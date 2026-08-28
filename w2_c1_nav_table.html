@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar and Table</title>
+</head>
+<body>
+    <header>
+        <h1>Navigation and Table Example</h1>
+        <nav>
+            <ul>
+                <li><a href="#table">Table</a></li>
+                <li><a href="#form">Form</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="table">
+            <h2>Section 1</h2>
+            <table border="1" style="border-collapse: collapse;">
+            <caption>Sample Table</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>GPA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>C123456</td>
+                    <td>Mahir Shadid</td>
+                    <td>3.5</td>
+                </tr>
+                <tr>
+                    <td>C789012</td>
+                    <td>Shadid Mahir</td>
+                    <td>3.8</td>
+                </tr>
+                <tr>
+                    <td>C345678</td>
+                    <td>Elon Musk</td>
+                    <td>3.2</td>
+                </tr>
+            </tbody>
+            </table>
+        </section>
+        <section id="form">
+            <h2>Form</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+    </main>
+</body>
+</html>
+
+<!-- console.log({
+    header: document.querySelector("header"),
+    nav: document.querySelector("nav"),
+    main: document.querySelector("main"),
+    tableSection: document.querySelector("#table"),
+    formSection: document.querySelector("#form"),
+    table: document.querySelector("table"),
+    form: document.querySelector("form")
+}); -->
