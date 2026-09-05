@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Basics - University Campus</title>
+
+    <style>
+
+
+        body {
+            font-family:'Courier New', Courier, monospace;
+            margin: 0;
+            background-color: #f4f6f8;
+            color: #222;
+        }
+
+
+        .header {
+            background-color: #0e2842;
+            color: rgb(154, 148, 241);
+            padding: 20px;
+            text-align: center;
+        }
+
+
+        #main-title {
+            font-size: 38px;
+            margin: 0;
+        }
+
+
+        nav {
+            background-color: #f3cccc;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #17324d;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+
+        main {
+            width: 80%;
+            max-width: 1500px;
+            margin: 30px auto;
+        }
+
+
+        .card {
+            background-color: white;
+
+            /* Box Model */
+            padding: 25px;
+            margin-bottom: 20px;
+
+            border: 2px solid #d9e0e6;
+            border-radius: 30px;
+
+            box-sizing: border-box;
+        }
+
+
+        .card h2 {
+            color: #17324d;
+            font-size: 30px;
+            margin-top: 0;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+
+        .button {
+            display: inline-block;
+
+            background-color: #17324d;
+            color: white;
+
+            padding: 10px 18px;
+            margin-top: 10px;
+
+            border-radius: 6px;
+
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #254e73;
+        }
+
+        .button:focus {
+            outline: 3px solid #ffbf00;
+            outline-offset: 3px;
+        }
+
+        .campus-image {
+            width: 100%;
+            height: 300px;
+
+            object-fit: cover;
+
+            border-radius: 30px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .box-demo {
+            width: 250px;
+            height: 250px;
+
+            padding: 50px;
+            margin: 50px;
+
+            border: 2px solid #17324d;
+
+            background-color: #9fd0f5;
+
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <header class="header">
+
+        <h1 id="main-title">
+            University Campus
+        </h1>
+
+        <p>
+            Welcome to our university
+        </p>
+
+    </header>
+
+
+    <nav aria-label="Main navigation">
+
+        <a href="#about">About</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#contact">Contact</a>
+
+    </nav>
+
+
+    <main>
+
+        <section id="about" class="card">
+
+            <h2>About Our Campus</h2>
+
+            <img
+                class="campus-image"
+                src="images/IIUC_Central_Mosque_front_view.jpg"
+                alt="Main entrance of the university campus"
+            >
+
+            <p class="description">
+                Our university provides a modern learning environment
+                with classrooms, laboratories, libraries and recreational
+                facilities for students.
+            </p>
+
+            <a href="#facilities" class="button">
+                Explore Facilities
+            </a>
+
+        </section>
+
+
+        <section id="facilities" class="card">
+
+            <h2>Campus Facilities</h2>
+
+            <ul>
+                <li>Computer Laboratories</li>
+                <li>Central Library</li>
+                <li>Research Center</li>
+                <li>Student Lounge</li>
+            </ul>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>CSS Box Model</h2>
+
+            <div class="box-demo">
+                This is the content area.
+            </div>
+
+        </section>
+
+
+        <section id="contact" class="card">
+
+            <h2>Search Campus</h2>
+
+            <label for="search">
+                Search
+            </label>
+
+            <input
+                id="search"
+                name="search"
+                type="search"
+                placeholder="Search facilities..."
+            >
+
+            <button type="button" class="button">
+                Search
+            </button>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
