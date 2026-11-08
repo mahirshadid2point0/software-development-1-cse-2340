@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduSpace - Course Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 p-6">
+
+    <main class="mx-auto max-w-4xl">
+
+        <h1 id="page-title" class="mb-2 text-3xl font-bold text-slate-900">
+            Course Dashboard
+        </h1>
+
+        <p id="welcome-text" class="mb-8 text-slate-500"></p>
+
+
+        <section id="course-list"
+            class="grid gap-5 md:grid-cols-2">
+        </section>
+
+    </main>
+
+
+    <script>
+
+        // 1. VARIABLES
+
+        const studentName = "Mahir";
+        let completedCourses = 3;
+        const isStudentActive = true;
+
+
+        // 2. OBJECT
+
+        const student = {
+            name: "Mahir",
+            department: "CSE",
+            semester: 4
+        };
+
+
+        // 3. ARRAY
+
+        const courses = [
+            {
+                name: "Web Development",
+                instructor: "Mahir",
+                progress: 82
+            },
+            {
+                name: "Data Mining",
+                instructor: "Dr. Rahman",
+                progress: 68
+            },
+            {
+                name: "Machine Learning",
+                instructor: "Dr. Hasan",
+                progress: 54
+            },
+            {
+                name: "Software Engineering",
+                instructor: "Dr. Karim",
+                progress: 91
+            }
+        ];
+
+
+        // 4. TEMPLATE LITERAL
+
+        const welcomeMessage =
+            `Welcome, ${student.name}! You are studying ${student.department}.`;
+
+        document.getElementById("welcome-text").textContent =
+            welcomeMessage;
+
+
+        // 5. FUNCTION
+
+        function getProgressText(progress) {
+
+            if (progress >= 80) {
+                return "Excellent progress";
+            }
+
+            if (progress >= 60) {
+                return "Good progress";
+            }
+
+            return "Needs attention";
+        }
+
+
+        // 6. DOM + ARRAY LOOP
+
+        const courseList =
+            document.getElementById("course-list");
+
+
+        courses.forEach(function (course) {
+
+            const card = document.createElement("article");
+
+            card.className =
+                "rounded-xl bg-white p-5 shadow-sm";
+
+
+            card.innerHTML = `
+
+                <h2 class="text-xl font-bold text-slate-900">
+                    ${course.name}
+                </h2>
+
+                <p class="mt-1 text-sm text-slate-500">
+                    Instructor: ${course.instructor}
+                </p>
+
+                <div class="mt-5">
+
+                    <div class="mb-2 flex justify-between text-sm">
+
+                        <span>Progress</span>
+
+                        <strong>
+                            ${course.progress}%
+                        </strong>
+
+                    </div>
+
+                    <div class="h-2 overflow-hidden rounded-full bg-slate-200">
+
+                        <div
+                            class="h-full rounded-full bg-blue-600"
+                            style="width: ${course.progress}%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <p class="mt-3 text-sm text-slate-500">
+                    ${getProgressText(course.progress)}
+                </p>
+
+                <button
+                    class="enroll-button mt-5 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+
+                    Continue
+
+                </button>
+            `;
+
+
+            courseList.appendChild(card);
+
+        });
+
+
+        // 7. EVENT
+
+        document.addEventListener("click", function (event) {
+
+            if (event.target.classList.contains("enroll-button")) {
+
+                alert("Course selected!");
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
