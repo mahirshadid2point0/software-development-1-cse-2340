@@ -55,18 +55,18 @@
                 progress: 82
             },
             {
-                name: "Data Mining",
-                instructor: "Dr. Rahman",
-                progress: 68
+                name: "Morality Development Program",
+                instructor: "Dr. Azhari",
+                progress: 99
             },
             {
                 name: "Machine Learning",
-                instructor: "Dr. Hasan",
+                instructor: "Dr. Patwary",
                 progress: 54
             },
             {
                 name: "Software Engineering",
-                instructor: "Dr. Karim",
+                instructor: "Dr. Biplob",
                 progress: 91
             }
         ];
@@ -76,6 +76,9 @@
 
         const welcomeMessage =
             `Welcome, ${student.name}! You are studying ${student.department}.`;
+
+        const NotSowelcomeMessage =
+            `Please leave, ${student.name}! You are not studying ${student.department}.`;
 
         document.getElementById("welcome-text").textContent =
             welcomeMessage;
