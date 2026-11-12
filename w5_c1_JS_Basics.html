@@ -68,6 +68,11 @@
                 name: "Software Engineering",
                 instructor: "Dr. Biplob",
                 progress: 91
+            },
+            {
+                name: "Data Structure",
+                instructor: "Dr. Jamil",
+                progress: 80
             }
         ];
 
@@ -81,7 +86,7 @@
             `Please leave, ${student.name}! You are not studying ${student.department}.`;
 
         document.getElementById("welcome-text").textContent =
-            welcomeMessage;
+            NotSowelcomeMessage;
 
 
         // 5. FUNCTION
@@ -106,7 +111,7 @@
             document.getElementById("course-list");
 
 
-        courses.forEach(function (course) {
+        courses.forEach((course) => {
 
             const card = document.createElement("article");
 
