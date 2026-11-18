@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SD-1 Student's Feedback</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 p-5 md:p-10">
+
+    <main class="mx-auto max-w-3xl">
+
+        <!-- 1. PAGE HEADER -->
+
+        <header class="mb-5">
+
+            <h1 class="text-3xl font-bold text-slate-900">
+                SD-1 Student's Feedback
+            </h1>
+
+            <p class="mt-2 text-slate-500">
+                Share your thoughts and help me improve.
+            </p>
+
+        </header>
+
+
+        <!-- 2. FEEDBACK COUNTER -->
+
+        <div class="mb-6 rounded-xl bg-green-50 p-2">
+
+            <p id="feedback-count" class="font-semibold text-blue-700">
+                Total feedback: 0
+            </p>
+
+        </div>
+
+
+        <!-- 3. FEEDBACK FORM -->
+
+        <form id="feedback-form" class="mb-10 rounded-xl bg-white p-6 shadow-sm">
+
+            <h2 class="mb-5 text-xl font-bold text-slate-800">
+                Submit Your Feedback
+            </h2>
+
+            <label for="student-name" class="mb-2 block text-sm font-medium text-slate-700">
+                Student Name
+            </label>
+
+            <input type="text" id="student-name" placeholder="Enter your name" required
+                class="mb-5 w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-100">
+
+            <label for="feedback-message" class="mb-2 block text-sm font-medium text-slate-700">
+                Your Feedback
+            </label>
+
+            <textarea id="feedback-message" rows="4" placeholder="Write your feedback here..." required
+                class="mb-5 w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"></textarea>
+
+            <button type="submit" class="rounded-lg bg-gray-600 px-5 py-3 font-semibold text-white hover:bg-blue-700">
+                Submit Feedback
+            </button>
+
+        </form>
+
+
+        <!-- 4. FEEDBACK LIST -->
+
+        <section>
+
+            <h2 class="mb-5 text-xl font-bold text-slate-800">
+                Submitted Feedback
+            </h2>
+
+            <div id="feedback-list" class="space-y-4">
+
+                <p id="empty-message"
+                    class="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-400">
+                    No feedback submitted yet.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        // 1. SELECT HTML ELEMENTS
+
+        const form = document.querySelector("#feedback-form");
+
+        const nameInput = document.querySelector("#student-name");
+
+        const messageInput = document.querySelector("#feedback-message");
+
+        const feedbackList = document.querySelector("#feedback-list");
+
+        const feedbackCount = document.querySelector("#feedback-count");
+
+        const emptyMessage = document.querySelector("#empty-message");
+
+
+        // 2. CREATE A COUNTER
+
+        let totalFeedback = 0;
+
+
+        // 3. HANDLE FORM SUBMISSION
+
+        form.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            const studentName = nameInput.value.trim();
+
+            const feedbackMessage = messageInput.value.trim();
+
+            if (studentName === "" || feedbackMessage === "") {
+                return;
+            }
+
+
+            // 4. HIDE EMPTY MESSAGE
+
+            emptyMessage.classList.add("hidden");
+
+
+            // 5. CREATE A FEEDBACK CARD
+
+            const card = document.createElement("article");
+
+            card.classList.add(
+                "rounded-xl",
+                "border",
+                "border-slate-200",
+                "bg-white",
+                "p-5",
+                "shadow-sm"
+            );
+
+
+            // 6. CREATE CARD CONTENT
+
+            const heading = document.createElement("h3");
+
+            heading.textContent = studentName;
+
+            heading.classList.add(
+                "text-lg",
+                "font-bold",
+                "text-slate-900"
+            );
+
+
+            const message = document.createElement("p");
+
+            message.textContent = feedbackMessage;
+
+            message.classList.add(
+                "my-3",
+                "text-slate-600"
+            );
+
+
+            const status = document.createElement("p");
+
+            status.textContent = "Status: Pending";
+
+            status.classList.add(
+                "mb-4",
+                "text-sm",
+                "font-medium",
+                "text-amber-600"
+            );
+
+
+            // 7. CREATE REVIEW BUTTON
+
+            const reviewButton = document.createElement("button");
+
+            reviewButton.textContent = "Mark as Reviewed";
+
+            reviewButton.classList.add(
+                "rounded-lg",
+                "bg-green-600",
+                "px-4",
+                "py-2",
+                "text-sm",
+                "font-semibold",
+                "text-white",
+                "hover:bg-red-700"
+            );
+
+
+            // 8. CREATE DELETE BUTTON
+
+            const deleteButton = document.createElement("button");
+
+            deleteButton.textContent = "Delete";
+
+            deleteButton.classList.add(
+                "ml-2",
+                "rounded-lg",
+                "bg-red-600",
+                "px-4",
+                "py-2",
+                "text-sm",
+                "font-semibold",
+                "text-white",
+                "hover:bg-red-700"
+            );
+
+
+            // 9. HANDLE REVIEW BUTTON CLICK
+
+            reviewButton.addEventListener("click", function () {
+
+                const isReviewed = card.classList.contains("bg-green-50");
+
+                if (isReviewed) {
+
+                    // Change back to Pending
+                    card.classList.remove("bg-green-50", "border-green-500");
+                    card.classList.add("bg-white", "border-slate-200");
+
+                    status.textContent = "Status: Pending";
+
+                    status.classList.remove("text-green-600");
+                    status.classList.add("text-amber-600");
+
+                    reviewButton.textContent = "Mark as Reviewed";
+
+                } else {
+
+                    // Change to Reviewed
+                    card.classList.remove("bg-white", "border-slate-200");
+                    card.classList.add("bg-green-50", "border-green-500");
+
+                    status.textContent = "Status: Reviewed";
+
+                    status.classList.remove("text-amber-600");
+                    status.classList.add("text-green-600");
+
+                    reviewButton.textContent = "Mark as Pending";
+
+                }
+
+            });
+
+            // 10. HANDLE DELETE BUTTON CLICK
+
+            deleteButton.addEventListener("click", function () {
+
+                card.remove();
+
+                totalFeedback--;
+
+                feedbackCount.textContent =
+                    `Total feedback: ${totalFeedback}`;
+
+                if (totalFeedback === 0) {
+
+                    emptyMessage.classList.remove("hidden");
+
+                }
+
+            });
+
+
+            // 11. ADD ELEMENTS TO THE CARD
+
+            card.appendChild(heading);
+
+            card.appendChild(message);
+
+            card.appendChild(status);
+
+            card.appendChild(reviewButton);
+
+            card.appendChild(deleteButton);
+
+
+            // 12. ADD CARD TO THE PAGE
+
+            feedbackList.appendChild(card);
+
+
+            // 13. UPDATE THE COUNTER
+
+            totalFeedback++;
+
+            feedbackCount.textContent =
+                `Total feedback: ${totalFeedback}`;
+
+
+            // 14. CLEAR THE FORM
+
+            form.reset();
+
+        });
+
+    </script>
+
+</body>
+
+</html>

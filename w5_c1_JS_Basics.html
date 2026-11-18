@@ -40,9 +40,9 @@
         // 2. OBJECT
 
         const student = {
-            name: "Mahir",
+            name: "Sakif",
             department: "CSE",
-            semester: 4
+            semester: 3
         };
 
 
@@ -73,6 +73,11 @@
                 name: "Data Structure",
                 instructor: "Dr. Jamil",
                 progress: 80
+            },
+            {
+                name: "Digital Logic",
+                instructor: "Mr. Maruf",
+                progress: 65
             }
         ];
 
@@ -86,7 +91,7 @@
             `Please leave, ${student.name}! You are not studying ${student.department}.`;
 
         document.getElementById("welcome-text").textContent =
-            NotSowelcomeMessage;
+            welcomeMessage;
 
 
         // 5. FUNCTION
