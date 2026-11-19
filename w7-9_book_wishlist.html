@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Wishlist</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 text-slate-800">
+  <header class="bg-blue-900 px-5 py-8 text-center text-white">
+    <h1 class="text-3xl font-bold md:text-4xl">Book Wishlist</h1>
+    <p class="mt-2 text-blue-100">Search real books</p>
+  </header>
+
+  <main class="mx-auto max-w-5xl space-y-5 px-4 py-6">
+    <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <h2 class="text-xl font-bold text-blue-900">Search for Books</h2>
+      <p class="mt-2 text-sm text-slate-600">Try searching for JavaScript, computer science, artificial intelligence, or
+        any book title.</p>
+
+      <div class="mt-4 flex flex-col gap-2 sm:flex-row">
+        <input id="searchInput" type="text" placeholder="Enter a book title or topic..."
+          class="min-w-0 flex-1 rounded-lg border border-slate-300 px-3 py-2.5 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+        <button id="searchButton"
+          class="rounded-lg bg-blue-600 px-5 py-2.5 font-semibold text-white hover:bg-blue-700 disabled:cursor-wait disabled:opacity-60">
+          Search Books
+        </button>
+        <button id="showSavedButton"
+          class="rounded-lg bg-slate-600 px-5 py-2.5 font-semibold text-white hover:bg-slate-700">
+          Show Saved
+        </button>
+      </div>
+
+      <div id="message" class="mt-4 rounded-lg bg-blue-50 px-4 py-3 text-sm text-blue-900" role="status">
+        Enter a topic and click Search Books.
+      </div>
+      <div id="bookList" class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+
+    <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <h2 class="text-xl font-bold text-blue-900">1. DOM Manipulation</h2>
+      <p class="mt-2"><span class="font-semibold">Meaning:</span> JavaScript selects HTML elements and changes what
+        appears on the page.</p>
+      <pre
+        class="mt-3 overflow-x-auto whitespace-pre-wrap rounded-lg bg-slate-900 p-4 text-sm leading-6 text-slate-100"><code>// Select the place where books will appear
+const bookList = document.querySelector("#bookList");
+
+// Create a new HTML element
+const card = document.createElement("div");
+
+// Put the book card on the page
+bookList.appendChild(card);</code></pre>
+      <p class="mt-3 text-sm text-slate-600">In this app, JavaScript creates a card for every book returned by the API.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <h2 class="text-xl font-bold text-blue-900">2. Events and Array Methods</h2>
+      <p class="mt-2"><span class="font-semibold">Meaning:</span> Events allow JavaScript to respond when a user clicks
+        or types.</p>
+      <pre
+        class="mt-3 overflow-x-auto whitespace-pre-wrap rounded-lg bg-slate-900 p-4 text-sm leading-6 text-slate-100"><code>searchButton.addEventListener("click", searchBooks);</code></pre>
+      <p class="mt-3">Array methods help us work with the returned books:</p>
+      <ul class="mt-2 list-inside list-disc space-y-1 text-sm">
+        <li><code class="rounded bg-blue-50 px-1 text-blue-800">forEach()</code> - display each book.</li>
+        <li><code class="rounded bg-blue-50 px-1 text-blue-800">filter()</code> - keep books matching a condition.</li>
+        <li><code class="rounded bg-blue-50 px-1 text-blue-800">map()</code> - create a new array, such as an array of
+          book titles.</li>
+        <li><code class="rounded bg-blue-50 px-1 text-blue-800">find()</code> - find one particular book.</li>
+      </ul>
+    </section>
+
+    <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <h2 class="text-xl font-bold text-blue-900">3. API and Async/Await</h2>
+      <p class="mt-2"><span class="font-semibold">Meaning:</span> An API lets our website request information from
+        another service. This project uses the Open Library Search API.</p>
+      <pre
+        class="mt-3 overflow-x-auto whitespace-pre-wrap rounded-lg bg-slate-900 p-4 text-sm leading-6 text-slate-100"><code>async function searchBooks() {
+  try {
+    const response = await fetch(apiURL);
+    const data = await response.json();
+
+    books = data.docs;
+    showBooks();
+  } catch (error) {
+    message.textContent = "Could not load books.";
+  }
+}</code></pre>
+      <ul class="mt-3 list-inside list-disc space-y-1 text-sm">
+        <li><code class="rounded bg-blue-50 px-1 text-blue-800">fetch()</code> requests data from the API.</li>
+        <li><code class="rounded bg-blue-50 px-1 text-blue-800">async</code> allows us to use <code>await</code>.</li>
+        <li><code class="rounded bg-blue-50 px-1 text-blue-800">await</code> waits for the response.</li>
+        <li><code class="rounded bg-blue-50 px-1 text-blue-800">try/catch</code> handles errors.</li>
+      </ul>
+    </section>
+
+    <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <h2 class="text-xl font-bold text-blue-900">4. Local Storage</h2>
+      <p class="mt-2"><span class="font-semibold">Meaning:</span> Local Storage remembers saved books in the browser,
+        even after refreshing the page.</p>
+      <pre
+        class="mt-3 overflow-x-auto whitespace-pre-wrap rounded-lg bg-slate-900 p-4 text-sm leading-6 text-slate-100"><code>// Save favourite book details
+localStorage.setItem("savedBooks", JSON.stringify(savedBooks));
+
+// Read favourite book details
+const savedBooks = JSON.parse(
+  localStorage.getItem("savedBooks") || "[]"
+);</code></pre>
+      <p class="mt-3 text-sm text-slate-600">Save a book, click Show Saved, or refresh the browser and click Show Saved
+        again. Your saved book details are stored independently of the latest search.</p>
+    </section>
+  </main>
+
+  <script>
+    // Select the HTML elements
+    const searchInput = document.querySelector("#searchInput");
+    const searchButton = document.querySelector("#searchButton");
+    const showSavedButton = document.querySelector("#showSavedButton");
+    const bookList = document.querySelector("#bookList");
+    const message = document.querySelector("#message");
+
+    // Store search results and saved book details separately
+    let books = [];
+    let showingSaved = false;
+
+    // Read saved book objects from Local Storage
+    let savedBooks = [];
+    try {
+      const storedBooks = JSON.parse(localStorage.getItem("savedBooks") || "[]");
+      savedBooks = Array.isArray(storedBooks)
+        ? storedBooks.filter(book => book && typeof book === "object" && book.key)
+        : [];
+    } catch (error) {
+      savedBooks = [];
+    }
+
+    // Search for books using the Open Library API
+    async function searchBooks() {
+      const searchText = searchInput.value.trim();
+
+      if (searchText === "") {
+        message.textContent = "Please enter a book title or topic.";
+        return;
+      }
+
+      searchButton.disabled = true;
+      message.textContent = "Searching for books...";
+      bookList.innerHTML = "";
+
+      try {
+        const apiURL =
+          "https://openlibrary.org/search.json?q=" +
+          encodeURIComponent(searchText) +
+          "&fields=key,title,author_name,first_publish_year,cover_i&limit=12";
+
+        const response = await fetch(apiURL);
+
+        if (!response.ok) {
+          throw new Error("API request failed");
+        }
+
+        const data = await response.json();
+        books = data.docs || [];
+        showingSaved = false;
+        showSavedButton.textContent = "Show Saved";
+        showBooks();
+        message.textContent = books.length + " books found.";
+      } catch (error) {
+        message.textContent = "Could not load books. Check your internet and try again.";
+      } finally {
+        searchButton.disabled = false;
+      }
+    }
+
+    // Display book cards on the page
+    function showBooks() {
+      bookList.innerHTML = "";
+      const booksToShow = showingSaved ? savedBooks : books;
+
+      if (booksToShow.length === 0) {
+        bookList.textContent = showingSaved
+          ? "You have not saved any books yet. Search for a book and click Save Book."
+          : "No books found. Try another search.";
+        return;
+      }
+
+      booksToShow.forEach(book => {
+        const card = document.createElement("article");
+        card.className = "flex flex-col rounded-xl border border-slate-200 bg-white p-4 shadow-sm";
+
+        const cover = document.createElement("img");
+        cover.alt = "Book cover";
+        cover.className = "mx-auto mb-3 h-44 w-32 rounded bg-slate-100 object-contain";
+        if (book.cover_i) {
+          cover.src = "https://covers.openlibrary.org/b/id/" + book.cover_i + "-M.jpg";
+        } else {
+          cover.src = "https://placehold.co/128x176/e2e8f0/475569?text=No+Cover";
+        }
+
+        const title = document.createElement("h3");
+        title.className = "font-bold text-slate-900";
+        title.textContent = book.title || "Title unavailable";
+
+        const author = document.createElement("p");
+        author.className = "mt-2 text-sm text-slate-600";
+        author.textContent = "Author: " +
+          (book.author_name ? book.author_name.slice(0, 2).join(", ") : "Unknown");
+
+        const year = document.createElement("p");
+        year.className = "mt-1 text-sm text-slate-600";
+        year.textContent = "First published: " +
+          (book.first_publish_year || "Unknown");
+
+        const link = document.createElement("a");
+        link.className = "mt-3 text-sm font-semibold text-blue-600 hover:underline";
+        link.href = "https://openlibrary.org" + book.key;
+        link.target = "_blank";
+        link.rel = "noopener";
+        link.textContent = "View on Open Library";
+
+        const saveButton = document.createElement("button");
+        const alreadySaved = savedBooks.some(savedBook => savedBook.key === book.key);
+        saveButton.className = alreadySaved
+          ? "mt-4 rounded-lg bg-slate-600 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700"
+          : "mt-4 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700";
+        saveButton.textContent = alreadySaved ? "Remove Saved Book" : "Save Book";
+
+        saveButton.addEventListener("click", function () {
+          if (savedBooks.some(savedBook => savedBook.key === book.key)) {
+            savedBooks = savedBooks.filter(savedBook => savedBook.key !== book.key);
+          } else {
+            savedBooks.push({
+              key: book.key,
+              title: book.title,
+              author_name: book.author_name || [],
+              first_publish_year: book.first_publish_year || null,
+              cover_i: book.cover_i || null
+            });
+          }
+
+          localStorage.setItem("savedBooks", JSON.stringify(savedBooks));
+          showBooks();
+        });
+
+        card.appendChild(cover);
+        card.appendChild(title);
+        card.appendChild(author);
+        card.appendChild(year);
+        card.appendChild(link);
+        card.appendChild(saveButton);
+        bookList.appendChild(card);
+      });
+    }
+
+    // Listen for button clicks
+    searchButton.addEventListener("click", searchBooks);
+
+    // Also search when Enter is pressed
+    searchInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        searchBooks();
+      }
+    });
+
+    // Switch between search results and all saved books
+    showSavedButton.addEventListener("click", function () {
+      showingSaved = !showingSaved;
+      showSavedButton.textContent = showingSaved ? "Show Search Results" : "Show Saved";
+      message.textContent = showingSaved ? "Your saved books:" : "Your latest search results:";
+      showBooks();
+    });
+  </script>
+</body>
+
+</html>
